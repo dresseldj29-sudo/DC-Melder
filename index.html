@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Freiburg V2 · Digitaler FME</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div><small>FREIBURG V2</small><h1>Digitaler Funkmeldeempfänger</h1></div><div class="top"><span id="mode" class="pill">TESTMODUS</span><button id="login">Mit Discord anmelden</button><button id="logout" hidden>Abmelden</button></div></header>
+<main>
+  <section class="panel userbar"><span id="who">Nicht angemeldet</span><button id="sound">Alarmton testen</button><button id="refresh">Aktualisieren</button></section>
+  <section class="grid">
+    <div class="panel">
+      <h2>Alarm erstellen</h2>
+      <form id="alarmForm">
+        <label>Stichwort<input name="keyword" required maxlength="100" placeholder="z. B. B2 – Brandmeldeanlage"></label>
+        <label>Adresse<input name="address" required maxlength="180" placeholder="Straße, Ort oder Treffpunkt"></label>
+        <label>Postleitzahl<input name="postalCode" maxlength="12" placeholder="z. B. 79100"></label>
+        <div class="grid"><label>Breitengrad (optional)<input name="lat" type="number" step="any" min="-90" max="90" placeholder="47.999"></label><label>Längengrad (optional)<input name="lng" type="number" step="any" min="-180" max="180" placeholder="7.842"></label></div>
+        <label>Meldebild<textarea name="description" rows="3" maxlength="1000" placeholder="Zusätzliche Informationen"></textarea></label>
+        <label>Gruppen<select name="groups" multiple size="4"><option value="Feuerwehr">Feuerwehr</option><option value="Rettungsdienst">Rettungsdienst</option><option value="Leitstelle">Leitstelle</option><option value="Führung">Führung</option></select><small>Mehrfachauswahl mit Strg/Cmd.</small></label>
+        <label class="check"><input name="test" type="checkbox" checked> Als Testalarm markieren</label>
+        <button type="submit">Alarm anlegen</button><p id="formMsg" class="msg"></p>
+      </form>
+    </div>
+    <div class="panel"><h2>Aktive Alarme</h2><div id="alarms" class="cards">Bitte anmelden, um Alarme zu laden.</div></div>
+  </section>
+  <section class="panel"><h2>Karte</h2><p class="muted">Marker werden nur gesetzt, wenn eine Adresse erfolgreich geocodiert werden kann. Keine automatische Alarmierung öffentlicher Stellen.</p><div id="map"></div></section>
+  <section class="panel"><h2>Historie</h2><div id="history" class="cards">Noch keine Daten geladen.</div></section>
+  <footer>Freiburg V2 · RP-interne Nutzung · Kein öffentlicher Notrufdienst</footer>
+</main>
+<script src="config.js"></script><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="app.js"></script>
+</body></html>
